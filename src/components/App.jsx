@@ -1,41 +1,18 @@
 import React, { useState } from "react";
+import Todos from "./TodoItems";
+import Input from "./InputArea";
 
 function App() {
   const [items, setItems] = useState([]);
-  const [formData, setFormData] = useState("");
-
-  function handleClick() {
-    setItems((data) => [...data, formData]);
-    setFormData("");
-  }
-
-  function handleChange(e) {
-    setFormData(e.target.value);
-  }
 
   return (
     <div className="container">
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input
-          type="text"
-          name="item"
-          value={formData}
-          onChange={handleChange}
-        />
-        <button onClick={handleClick}>
-          <span>Add</span>
-        </button>
-      </div>
+      <Input add={setItems} />
       <div>
-        <ul>
-          <li>A Item</li>
-          {items.map((i) => (
-            <li key={i.indexOf()}>{i}</li>
-          ))}
-        </ul>
+        <Todos items={items} />
       </div>
     </div>
   );
